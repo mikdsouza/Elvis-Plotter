@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyquistPlotter", "Evlis-Plotter\NyquistPlotter.csproj", "{765F1DD9-A23F-469D-BEAD-F3D8066C4458}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NyquistPlotter", "NyquistPlotter\NyquistPlotter.csproj", "{765F1DD9-A23F-469D-BEAD-F3D8066C4458}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
