@@ -81,5 +81,18 @@ namespace NyquistPlotter
                 Clipboard.SetImage(bm);
             }
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void saveToFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (sfdChart.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                cChart.SaveImage(new FileStream(sfdChart.FileName, FileMode.Create), ChartImageFormat.Png);
+            }
+        }
     }
 }
