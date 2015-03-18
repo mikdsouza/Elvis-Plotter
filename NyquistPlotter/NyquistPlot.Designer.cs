@@ -29,19 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ofdImportBode = new System.Windows.Forms.OpenFileDialog();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmsChart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sfdChart = new System.Windows.Forms.SaveFileDialog();
             this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sfdChart = new System.Windows.Forms.SaveFileDialog();
+            this.formatAxlisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cChart)).BeginInit();
             this.cmsChart.SuspendLayout();
@@ -78,24 +79,31 @@
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
             // cChart
             // 
-            chartArea2.AxisX.Title = "Real(Gain)";
-            chartArea2.AxisY.Title = "Im(Gain)";
-            chartArea2.Name = "caArea";
-            this.cChart.ChartAreas.Add(chartArea2);
+            chartArea1.AxisX.Title = "Real(Gain)";
+            chartArea1.AxisY.Title = "Im(Gain)";
+            chartArea1.Name = "caArea";
+            this.cChart.ChartAreas.Add(chartArea1);
             this.cChart.ContextMenuStrip = this.cmsChart;
             this.cChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.cChart.Legends.Add(legend2);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.cChart.Legends.Add(legend1);
             this.cChart.Location = new System.Drawing.Point(0, 24);
             this.cChart.Name = "cChart";
-            series2.ChartArea = "caArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "sPlot";
-            this.cChart.Series.Add(series2);
+            series1.ChartArea = "caArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "sPlot";
+            this.cChart.Series.Add(series1);
             this.cChart.Size = new System.Drawing.Size(781, 552);
             this.cChart.TabIndex = 1;
             this.cChart.Text = "cChart";
@@ -104,9 +112,10 @@
             // 
             this.cmsChart.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
-            this.saveToFileToolStripMenuItem});
+            this.saveToFileToolStripMenuItem,
+            this.formatAxlisToolStripMenuItem});
             this.cmsChart.Name = "cmsChart";
-            this.cmsChart.Size = new System.Drawing.Size(174, 48);
+            this.cmsChart.Size = new System.Drawing.Size(174, 92);
             // 
             // copyToolStripMenuItem
             // 
@@ -116,12 +125,6 @@
             this.copyToolStripMenuItem.Text = "&Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
-            // sfdChart
-            // 
-            this.sfdChart.DefaultExt = "png";
-            this.sfdChart.Filter = "PNG Image (*.png)|*.png";
-            this.sfdChart.Title = "Save Image";
-            // 
             // saveToFileToolStripMenuItem
             // 
             this.saveToFileToolStripMenuItem.Name = "saveToFileToolStripMenuItem";
@@ -130,12 +133,18 @@
             this.saveToFileToolStripMenuItem.Text = "&Save to File";
             this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.saveToFileToolStripMenuItem_Click);
             // 
-            // exitToolStripMenuItem
+            // sfdChart
             // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.sfdChart.DefaultExt = "png";
+            this.sfdChart.Filter = "PNG Image (*.png)|*.png";
+            this.sfdChart.Title = "Save Image";
+            // 
+            // formatAxlisToolStripMenuItem
+            // 
+            this.formatAxlisToolStripMenuItem.Name = "formatAxlisToolStripMenuItem";
+            this.formatAxlisToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.formatAxlisToolStripMenuItem.Text = "Format &Axis";
+            this.formatAxlisToolStripMenuItem.Click += new System.EventHandler(this.formatAxlisToolStripMenuItem_Click);
             // 
             // NyquistPlot
             // 
@@ -168,6 +177,7 @@
         private System.Windows.Forms.SaveFileDialog sfdChart;
         private System.Windows.Forms.ToolStripMenuItem saveToFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formatAxlisToolStripMenuItem;
 
     }
 }

@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChartOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChartOptions.Designer.cs">
+      <DependentUpon>ChartOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Data\BodePoint.cs" />
     <Compile Include="NyquistPlot.cs">
       <SubType>Form</SubType>
@@ -55,6 +61,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChartOptions.resx">
+      <DependentUpon>ChartOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NyquistPlot.resx">
       <DependentUpon>NyquistPlot.cs</DependentUpon>
     </EmbeddedResource>

@@ -94,5 +94,35 @@ namespace NyquistPlotter
                 cChart.SaveImage(new FileStream(sfdChart.FileName, FileMode.Create), ChartImageFormat.Png);
             }
         }
+
+        private void formatAxlisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChartOptions options = new ChartOptions()
+                {
+                    MinX = cChart.ChartAreas[0].AxisX.Minimum,
+                    MaxX = cChart.ChartAreas[0].AxisX.Maximum,
+                    MinY = cChart.ChartAreas[0].AxisY.Minimum,
+                    MaxY = cChart.ChartAreas[0].AxisY.Maximum
+                };
+
+            if (options.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                cChart.ChartAreas[0].AxisX.Minimum = options.MinX;
+                cChart.ChartAreas[0].AxisX.Maximum = options.MaxX;
+                
+                if (options.AutoX)
+                {
+                    cChart.ChartAreas[0].AxisX.Maximum = double.NaN;
+                }
+
+                cChart.ChartAreas[0].AxisY.Minimum = options.MinY;
+                cChart.ChartAreas[0].AxisY.Maximum = options.MaxY;
+
+                if (options.AutoY)
+                {
+                    cChart.ChartAreas[0].AxisY.Maximum = double.NaN;
+                }
+            }
+        }
     }
 }
