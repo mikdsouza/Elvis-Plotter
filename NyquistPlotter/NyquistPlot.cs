@@ -66,10 +66,14 @@ namespace NyquistPlotter
         private void PlotBodePoints(List<BodePoint> points)
         {
             cChart.Series[0].Points.Clear();
+            cChart.Series[2].Points.Clear();
+            cChart.Series[4].Points.Clear();
 
             foreach(BodePoint point in points)
             {
                 cChart.Series[0].Points.AddXY(point.Value.Real, point.Value.Imaginary);
+                cChart.Series[2].Points.AddXY(point.Frequency, point.GainDB);
+                cChart.Series[4].Points.AddXY(point.Frequency, point.PhaseDeg);
             }
         }
 
@@ -128,10 +132,10 @@ namespace NyquistPlotter
 
         private void filterAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MakePlot(i => Complex.One / (Complex.One - new Complex(0, (double)i / 5e+3)));
+            MakePlots(i => Complex.One / (Complex.One - new Complex(0, (double)i / 5e+3)));
         }
 
-        private void MakePlot(Func<int, Complex> transferFunction)
+        private void MakeTheoNyquistPlot(Func<int, Complex> transferFunction)
         {
             cChart.Series[1].Points.Clear();
 
@@ -140,6 +144,25 @@ namespace NyquistPlotter
                 Complex res = transferFunction(i);
                 cChart.Series[1].Points.AddXY(res.Real, res.Imaginary);
             }
+        }
+
+        private void MakeTheoBode(Func<int, Complex> transferFunction)
+        {
+            cChart.Series[3].Points.Clear();
+            cChart.Series[5].Points.Clear();
+
+            for (int i = 100; i <= 1000000; i = DecadeStep(i))
+            {
+                Complex res = transferFunction(i);
+                cChart.Series[3].Points.AddXY(i, 20 * Math.Log10(res.Magnitude));
+                cChart.Series[5].Points.AddXY(i, res.Phase * 180 / Math.PI);
+            }
+        }
+
+        private void MakePlots(Func<int, Complex> transferFunction)
+        {
+            MakeTheoNyquistPlot(transferFunction);
+            MakeTheoBode(transferFunction);
         }
 
         private int DecadeStep(int step)
@@ -152,7 +175,7 @@ namespace NyquistPlotter
 
         private void filterBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MakePlot(i => Complex.One / (Complex.One + new Complex(0, (double)i / 5e+3)));
+            MakePlots(i => Complex.One / (Complex.One + new Complex(0, (double)i / 5e+3)));
         }
 
         private void filterCToolStripMenuItem_Click(object sender, EventArgs e)
@@ -161,8 +184,8 @@ namespace NyquistPlotter
             Complex omegaC = new Complex(2 * Math.PI * 25.2e-9, 0);
             Complex omegaL = new Complex(2 * Math.PI * 11.1e-3, 0);
             Complex Rp = new Complex(20.5, 0);
-            
-            MakePlot((int i) => R2 / (R2 + (Rp / (Complex.One + new Complex(0, Rp.Real) * (omegaC * i - Complex.One / (omegaL * i))))));
+
+            MakePlots((int i) => R2 / (R2 + (Rp / (Complex.One + new Complex(0, Rp.Real) * (omegaC * i - Complex.One / (omegaL * i))))));
         }
 
         private void filterDToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,7 +195,30 @@ namespace NyquistPlotter
             Complex omegaL = new Complex(2 * Math.PI * 11.1e-3, 0);
             Complex Rs = new Complex(500, 0);
 
-            MakePlot((int i) => R1 / (R1 + (Rs * (Complex.One + Complex.ImaginaryOne*((omegaL * i)/Rs - Complex.One/(omegaC * i * Rs))))));
+            MakePlots((int i) => R1 / (R1 + (Rs * (Complex.One + Complex.ImaginaryOne * ((omegaL * i) / Rs - Complex.One / (omegaC * i * Rs))))));
+        }
+
+        private void nyquistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EnablePlot("caNyquist");
+        }
+
+        private void EnablePlot(string name)
+        {
+            foreach(ChartArea area in cChart.ChartAreas)
+            {
+                area.Visible = area.Name == name;
+            }
+        }
+
+        private void badeAmplitudeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EnablePlot("caBodeAmp");
+        }
+
+        private void bodePhaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EnablePlot("caBodePhase");
         }
     }
 }
