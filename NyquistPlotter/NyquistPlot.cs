@@ -158,8 +158,8 @@ namespace NyquistPlotter
         private void filterCToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Complex R2 = new Complex(301.1, 0);
-            Complex omegaC = new Complex(0, 2 * Math.PI * 25.2e-9);
-            Complex omegaL = new Complex(0, 2 * Math.PI * 11.1e-3);
+            Complex omegaC = new Complex(2 * Math.PI * 25.2e-9, 0);
+            Complex omegaL = new Complex(2 * Math.PI * 11.1e-3, 0);
             Complex Rp = new Complex(20.5, 0);
             
             MakePlot((int i) => R2 / (R2 + (Rp / (Complex.One + new Complex(0, Rp.Real) * (omegaC * i - Complex.One / (omegaL * i))))));
@@ -168,8 +168,8 @@ namespace NyquistPlotter
         private void filterDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Complex R1 = new Complex(82, 0);
-            Complex omegaC = new Complex(0, 2 * Math.PI * 25.2e-9);
-            Complex omegaL = new Complex(0, 2 * Math.PI * 11.1e-3);
+            Complex omegaC = new Complex(2 * Math.PI * 25.2e-9, 0);
+            Complex omegaL = new Complex(2 * Math.PI * 11.1e-3, 0);
             Complex Rs = new Complex(500, 0);
 
             MakePlot((int i) => R1 / (R1 + (Rs * (Complex.One + Complex.ImaginaryOne*((omegaL * i)/Rs - Complex.One/(omegaC * i * Rs))))));
