@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -123,6 +124,55 @@ namespace NyquistPlotter
                     cChart.ChartAreas[0].AxisY.Maximum = double.NaN;
                 }
             }
+        }
+
+        private void filterAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MakePlot(i => Complex.One / (Complex.One - new Complex(0, (double)i / 5e+3)));
+        }
+
+        private void MakePlot(Func<int, Complex> transferFunction)
+        {
+            cChart.Series[1].Points.Clear();
+
+            for (int i = 100; i <= 1000000; i = DecadeStep(i))
+            {
+                Complex res = transferFunction(i);
+                cChart.Series[1].Points.AddXY(res.Real, res.Imaginary);
+            }
+        }
+
+        private int DecadeStep(int step)
+        {
+            int power = (int)Math.Log10(step);
+            int decade = (int)Math.Pow(10, power);
+
+            return decade * (step / decade + 1);
+        }
+
+        private void filterBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MakePlot(i => Complex.One / (Complex.One + new Complex(0, (double)i / 5e+3)));
+        }
+
+        private void filterCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Complex R2 = new Complex(301.1, 0);
+            Complex omegaC = new Complex(0, 2 * Math.PI * 25.2e-9);
+            Complex omegaL = new Complex(0, 2 * Math.PI * 11.1e-3);
+            Complex Rp = new Complex(20.5, 0);
+            
+            MakePlot((int i) => R2 / (R2 + (Rp / (Complex.One + new Complex(0, Rp.Real) * (omegaC * i - Complex.One / (omegaL * i))))));
+        }
+
+        private void filterDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Complex R1 = new Complex(82, 0);
+            Complex omegaC = new Complex(0, 2 * Math.PI * 25.2e-9);
+            Complex omegaL = new Complex(0, 2 * Math.PI * 11.1e-3);
+            Complex Rs = new Complex(500, 0);
+
+            MakePlot((int i) => R1 / (R1 + (Rs * (Complex.One + Complex.ImaginaryOne*((omegaL * i)/Rs - Complex.One/(omegaC * i * Rs))))));
         }
     }
 }

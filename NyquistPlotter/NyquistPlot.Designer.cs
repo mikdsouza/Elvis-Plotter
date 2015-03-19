@@ -32,17 +32,23 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ofdImportBode = new System.Windows.Forms.OpenFileDialog();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addTheoraticalPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.filterCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmsChart = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sfdChart = new System.Windows.Forms.SaveFileDialog();
             this.formatAxlisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sfdChart = new System.Windows.Forms.SaveFileDialog();
+            this.filterDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cChart)).BeginInit();
             this.cmsChart.SuspendLayout();
@@ -66,6 +72,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importToolStripMenuItem,
+            this.addTheoraticalPlotToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -75,14 +82,46 @@
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            // 
+            // addTheoraticalPlotToolStripMenuItem
+            // 
+            this.addTheoraticalPlotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.filterAToolStripMenuItem,
+            this.filterBToolStripMenuItem,
+            this.filterCToolStripMenuItem,
+            this.filterDToolStripMenuItem});
+            this.addTheoraticalPlotToolStripMenuItem.Name = "addTheoraticalPlotToolStripMenuItem";
+            this.addTheoraticalPlotToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.addTheoraticalPlotToolStripMenuItem.Text = "Add Theoratical Plot";
+            // 
+            // filterAToolStripMenuItem
+            // 
+            this.filterAToolStripMenuItem.Name = "filterAToolStripMenuItem";
+            this.filterAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterAToolStripMenuItem.Text = "Filter A";
+            this.filterAToolStripMenuItem.Click += new System.EventHandler(this.filterAToolStripMenuItem_Click);
+            // 
+            // filterBToolStripMenuItem
+            // 
+            this.filterBToolStripMenuItem.Name = "filterBToolStripMenuItem";
+            this.filterBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterBToolStripMenuItem.Text = "Filter B";
+            this.filterBToolStripMenuItem.Click += new System.EventHandler(this.filterBToolStripMenuItem_Click);
+            // 
+            // filterCToolStripMenuItem
+            // 
+            this.filterCToolStripMenuItem.Name = "filterCToolStripMenuItem";
+            this.filterCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterCToolStripMenuItem.Text = "Filter C";
+            this.filterCToolStripMenuItem.Click += new System.EventHandler(this.filterCToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -102,8 +141,17 @@
             series1.ChartArea = "caArea";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
             series1.Name = "sPlot";
+            series2.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            series2.BorderWidth = 3;
+            series2.ChartArea = "caArea";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series2.Name = "sTheoPlot";
             this.cChart.Series.Add(series1);
+            this.cChart.Series.Add(series2);
             this.cChart.Size = new System.Drawing.Size(781, 552);
             this.cChart.TabIndex = 1;
             this.cChart.Text = "cChart";
@@ -115,7 +163,7 @@
             this.saveToFileToolStripMenuItem,
             this.formatAxlisToolStripMenuItem});
             this.cmsChart.Name = "cmsChart";
-            this.cmsChart.Size = new System.Drawing.Size(174, 92);
+            this.cmsChart.Size = new System.Drawing.Size(174, 70);
             // 
             // copyToolStripMenuItem
             // 
@@ -133,18 +181,25 @@
             this.saveToFileToolStripMenuItem.Text = "&Save to File";
             this.saveToFileToolStripMenuItem.Click += new System.EventHandler(this.saveToFileToolStripMenuItem_Click);
             // 
-            // sfdChart
-            // 
-            this.sfdChart.DefaultExt = "png";
-            this.sfdChart.Filter = "PNG Image (*.png)|*.png";
-            this.sfdChart.Title = "Save Image";
-            // 
             // formatAxlisToolStripMenuItem
             // 
             this.formatAxlisToolStripMenuItem.Name = "formatAxlisToolStripMenuItem";
             this.formatAxlisToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.formatAxlisToolStripMenuItem.Text = "Format &Axis";
             this.formatAxlisToolStripMenuItem.Click += new System.EventHandler(this.formatAxlisToolStripMenuItem_Click);
+            // 
+            // sfdChart
+            // 
+            this.sfdChart.DefaultExt = "png";
+            this.sfdChart.Filter = "PNG Image (*.png)|*.png";
+            this.sfdChart.Title = "Save Image";
+            // 
+            // filterDToolStripMenuItem
+            // 
+            this.filterDToolStripMenuItem.Name = "filterDToolStripMenuItem";
+            this.filterDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filterDToolStripMenuItem.Text = "Filter D";
+            this.filterDToolStripMenuItem.Click += new System.EventHandler(this.filterDToolStripMenuItem_Click);
             // 
             // NyquistPlot
             // 
@@ -178,6 +233,11 @@
         private System.Windows.Forms.ToolStripMenuItem saveToFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem formatAxlisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addTheoraticalPlotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filterDToolStripMenuItem;
 
     }
 }
