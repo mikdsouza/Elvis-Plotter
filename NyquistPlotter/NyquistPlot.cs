@@ -175,7 +175,7 @@ namespace NyquistPlotter
 
         private void filterBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MakePlots(i => Complex.One / (Complex.One + new Complex(0, 5e+3 / (double)i)));
+            MakePlots(i => Complex.One / (Complex.One + new Complex(0, (double)i / 5e+3)));
         }
 
         private void filterCToolStripMenuItem_Click(object sender, EventArgs e)
