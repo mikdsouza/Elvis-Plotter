@@ -130,11 +130,6 @@ namespace NyquistPlotter
             }
         }
 
-        private void filterAToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MakePlots(i => Complex.One / (Complex.One - new Complex(0, (double)i / 5e+3)));
-        }
-
         private void MakeTheoNyquistPlot(Func<int, Complex> transferFunction)
         {
             cChart.Series[1].Points.Clear();
@@ -173,9 +168,14 @@ namespace NyquistPlotter
             return decade * (step / decade + 1);
         }
 
+        private void filterAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MakePlots(i => Complex.One / (Complex.One - new Complex(0, 5e+3 / (double)i)));
+        }
+
         private void filterBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MakePlots(i => Complex.One / (Complex.One + new Complex(0, (double)i / 5e+3)));
+            MakePlots(i => Complex.One / (Complex.One + new Complex(0, 5e+3 / (double)i)));
         }
 
         private void filterCToolStripMenuItem_Click(object sender, EventArgs e)
