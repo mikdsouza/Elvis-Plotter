@@ -200,11 +200,13 @@ namespace NyquistPlotter
 
         private void nyquistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EnablePlot("caNyquist");
+            EnablePlot("caNyquist", "Nyquist Plot");
         }
 
-        private void EnablePlot(string name)
+        private void EnablePlot(string name, string title)
         {
+            cChart.Titles[0].Text = title;
+
             foreach(ChartArea area in cChart.ChartAreas)
             {
                 area.Visible = area.Name == name;
@@ -213,12 +215,12 @@ namespace NyquistPlotter
 
         private void badeAmplitudeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EnablePlot("caBodeAmp");
+            EnablePlot("caBodeAmp", "Bode Amplitude Plot");
         }
 
         private void bodePhaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EnablePlot("caBodePhase");
+            EnablePlot("caBodePhase", "Bode Phase Plot");
         }
     }
 }
