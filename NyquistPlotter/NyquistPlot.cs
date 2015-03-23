@@ -201,6 +201,7 @@ namespace NyquistPlotter
         private void nyquistToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EnablePlot("caNyquist", "Nyquist Plot");
+            cChart.Legends[0].Enabled = false;
         }
 
         private void EnablePlot(string name, string title)
@@ -215,12 +216,8 @@ namespace NyquistPlotter
 
         private void badeAmplitudeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            EnablePlot("caBodeAmp", "Bode Amplitude Plot");
-        }
-
-        private void bodePhaseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            EnablePlot("caBodePhase", "Bode Phase Plot");
+            EnablePlot("caBode", "Bode Plot");
+            cChart.Legends[0].Enabled = true;
         }
     }
 }

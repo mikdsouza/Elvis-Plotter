@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -58,7 +57,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.nyquistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.badeAmplitudeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bodePhaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdChart = new System.Windows.Forms.SaveFileDialog();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cChart)).BeginInit();
@@ -152,19 +150,17 @@
             chartArea2.AxisX.Maximum = 1000000D;
             chartArea2.AxisX.Minimum = 100D;
             chartArea2.AxisX.Title = "Frequency (Hz)";
+            chartArea2.AxisX2.IsLogarithmic = true;
+            chartArea2.AxisX2.Maximum = 1000000D;
+            chartArea2.AxisX2.Minimum = 100D;
             chartArea2.AxisY.Title = "Gain (dB)";
-            chartArea2.Name = "caBodeAmp";
+            chartArea2.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea2.AxisY2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea2.AxisY2.Title = "Phase (deg)";
+            chartArea2.Name = "caBode";
             chartArea2.Visible = false;
-            chartArea3.AxisX.IsLogarithmic = true;
-            chartArea3.AxisX.Maximum = 1000000D;
-            chartArea3.AxisX.Minimum = 100D;
-            chartArea3.AxisX.Title = "Frequency (Hz)";
-            chartArea3.AxisY.Title = "Phase (Deg)";
-            chartArea3.Name = "caBodePhase";
-            chartArea3.Visible = false;
             this.cChart.ChartAreas.Add(chartArea1);
             this.cChart.ChartAreas.Add(chartArea2);
-            this.cChart.ChartAreas.Add(chartArea3);
             this.cChart.ContextMenuStrip = this.cmsChart;
             this.cChart.Dock = System.Windows.Forms.DockStyle.Fill;
             legend1.Enabled = false;
@@ -174,40 +170,52 @@
             this.cChart.Name = "cChart";
             series1.ChartArea = "caNyquist";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsVisibleInLegend = false;
             series1.Legend = "Legend1";
+            series1.LegendText = "Exp. Nyquist Plot";
             series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
             series1.Name = "sPlot";
             series2.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             series2.BorderWidth = 3;
             series2.ChartArea = "caNyquist";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.IsVisibleInLegend = false;
             series2.Legend = "Legend1";
+            series2.LegendText = "Theo. Nyquist Plot";
             series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series2.Name = "sTheoPlot";
-            series3.ChartArea = "caBodeAmp";
+            series3.ChartArea = "caBode";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Legend = "Legend1";
+            series3.LegendText = "Exp. Bode Amplitude";
+            series3.MarkerSize = 7;
             series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
             series3.Name = "sBodeAmp";
             series4.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            series4.BorderWidth = 3;
-            series4.ChartArea = "caBodeAmp";
+            series4.ChartArea = "caBode";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Legend = "Legend1";
+            series4.LegendText = "Theo. Bode Amplitude";
+            series4.MarkerSize = 7;
             series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series4.Name = "sTheoBodeAmp";
-            series5.ChartArea = "caBodePhase";
+            series5.ChartArea = "caBode";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Legend = "Legend1";
-            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series5.LegendText = "Exp. Bode Phase";
+            series5.MarkerSize = 7;
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
             series5.Name = "sBodePhase";
+            series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series6.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            series6.BorderWidth = 3;
-            series6.ChartArea = "caBodePhase";
+            series6.ChartArea = "caBode";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series6.Legend = "Legend1";
-            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series6.LegendText = "Theo. Bode Phase";
+            series6.MarkerSize = 7;
+            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Cross;
             series6.Name = "sTheoBodePhase";
+            series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             this.cChart.Series.Add(series1);
             this.cChart.Series.Add(series2);
             this.cChart.Series.Add(series3);
@@ -230,10 +238,9 @@
             this.formatAxlisToolStripMenuItem,
             this.toolStripSeparator1,
             this.nyquistToolStripMenuItem,
-            this.badeAmplitudeToolStripMenuItem,
-            this.bodePhaseToolStripMenuItem});
+            this.badeAmplitudeToolStripMenuItem});
             this.cmsChart.Name = "cmsChart";
-            this.cmsChart.Size = new System.Drawing.Size(174, 142);
+            this.cmsChart.Size = new System.Drawing.Size(174, 120);
             // 
             // copyToolStripMenuItem
             // 
@@ -274,15 +281,8 @@
             // 
             this.badeAmplitudeToolStripMenuItem.Name = "badeAmplitudeToolStripMenuItem";
             this.badeAmplitudeToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.badeAmplitudeToolStripMenuItem.Text = "Bode Amplitude";
+            this.badeAmplitudeToolStripMenuItem.Text = "Bode";
             this.badeAmplitudeToolStripMenuItem.Click += new System.EventHandler(this.badeAmplitudeToolStripMenuItem_Click);
-            // 
-            // bodePhaseToolStripMenuItem
-            // 
-            this.bodePhaseToolStripMenuItem.Name = "bodePhaseToolStripMenuItem";
-            this.bodePhaseToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.bodePhaseToolStripMenuItem.Text = "Bode Phase";
-            this.bodePhaseToolStripMenuItem.Click += new System.EventHandler(this.bodePhaseToolStripMenuItem_Click);
             // 
             // sfdChart
             // 
@@ -330,7 +330,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem nyquistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem badeAmplitudeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem bodePhaseToolStripMenuItem;
 
     }
 }
