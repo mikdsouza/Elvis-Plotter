@@ -48,7 +48,7 @@ namespace NyquistPlotter
             foreach(string line in lines)
             {
                 //Get rid of spaces
-                string parsedLine = Regex.Replace(line, @"\s+", " ");
+                string parsedLine = Regex.Replace(line.Trim(), @"\s+", " ");
 
                 string[] values = parsedLine.Split(' ');
                 BodePoint point = new BodePoint 
