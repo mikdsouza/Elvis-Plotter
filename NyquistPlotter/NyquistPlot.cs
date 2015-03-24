@@ -202,6 +202,7 @@ namespace NyquistPlotter
         {
             EnablePlot("caNyquist", "Nyquist Plot");
             cChart.Legends[0].Enabled = false;
+            cChart.Legends[1].Enabled = true;
         }
 
         private void EnablePlot(string name, string title)
@@ -218,6 +219,7 @@ namespace NyquistPlotter
         {
             EnablePlot("caBode", "Bode Plot");
             cChart.Legends[0].Enabled = true;
+            cChart.Legends[1].Enabled = false;
         }
     }
 }
