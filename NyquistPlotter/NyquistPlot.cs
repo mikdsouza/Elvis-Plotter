@@ -1,15 +1,11 @@
 ﻿using NyquistPlotter.Data;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Numerics;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -209,10 +205,7 @@ namespace NyquistPlotter
         {
             cChart.Titles[0].Text = title;
 
-            foreach(ChartArea area in cChart.ChartAreas)
-            {
-                area.Visible = area.Name == name;
-            }
+            cChart.ChartAreas.ToList().ForEach(a => a.Visible = a.Name == name);
         }
 
         private void badeAmplitudeToolStripMenuItem_Click(object sender, EventArgs e)
