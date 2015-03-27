@@ -126,23 +126,23 @@ namespace NyquistPlotter
             }
         }
 
-        private void MakeTheoNyquistPlot(Func<int, Complex> transferFunction)
+        private void MakeTheoNyquistPlot(Func<double, Complex> transferFunction)
         {
             cChart.Series[1].Points.Clear();
 
-            for (int i = 100; i <= 1000000; i = DecadeStep(i))
+            foreach (double i in logspace(100, 1e6, 100))
             {
                 Complex res = transferFunction(i);
                 cChart.Series[1].Points.AddXY(res.Real, res.Imaginary);
             }
         }
 
-        private void MakeTheoBode(Func<int, Complex> transferFunction)
+        private void MakeTheoBode(Func<double, Complex> transferFunction)
         {
             cChart.Series[3].Points.Clear();
             cChart.Series[5].Points.Clear();
 
-            for (int i = 100; i <= 1000000; i = DecadeStep(i))
+            foreach(double i in logspace(100, 1e6, 100))
             {
                 Complex res = transferFunction(i);
                 cChart.Series[3].Points.AddXY(i, 20 * Math.Log10(res.Magnitude));
@@ -150,7 +150,7 @@ namespace NyquistPlotter
             }
         }
 
-        private void MakePlots(Func<int, Complex> transferFunction)
+        private void MakePlots(Func<double, Complex> transferFunction)
         {
             MakeTheoNyquistPlot(transferFunction);
             MakeTheoBode(transferFunction);
@@ -179,9 +179,9 @@ namespace NyquistPlotter
             Complex R2 = new Complex(301.1, 0);
             Complex omegaC = new Complex(2 * Math.PI * 25.2e-9, 0);
             Complex omegaL = new Complex(2 * Math.PI * 11.1e-3, 0);
-            Complex Rp = new Complex(20.5, 0);
+            Complex Rp = new Complex(6724.32, 0);
 
-            MakePlots((int i) => R2 / (R2 + (Rp / (Complex.One + new Complex(0, Rp.Real) * (omegaC * i - Complex.One / (omegaL * i))))));
+            MakePlots((double i) => R2 / (R2 + (Rp / (Complex.One + new Complex(0, Rp.Real) * (omegaC * i - Complex.One / (omegaL * i))))));
         }
 
         private void filterDToolStripMenuItem_Click(object sender, EventArgs e)
@@ -189,9 +189,9 @@ namespace NyquistPlotter
             Complex R1 = new Complex(82, 0);
             Complex omegaC = new Complex(2 * Math.PI * 25.2e-9, 0);
             Complex omegaL = new Complex(2 * Math.PI * 11.1e-3, 0);
-            Complex Rs = new Complex(500, 0);
+            Complex Rs = new Complex(50, 0);
 
-            MakePlots((int i) => R1 / (R1 + (Rs * (Complex.One + Complex.ImaginaryOne * ((omegaL * i) / Rs - Complex.One / (omegaC * i * Rs))))));
+            MakePlots((double i) => R1 / (R1 + (Rs * (Complex.One + Complex.ImaginaryOne * ((omegaL * i) / Rs - Complex.One / (omegaC * i * Rs))))));
         }
 
         private void nyquistToolStripMenuItem_Click(object sender, EventArgs e)
@@ -213,6 +213,13 @@ namespace NyquistPlotter
             EnablePlot("caBode", "Bode Plot");
             cChart.Legends[0].Enabled = true;
             cChart.Legends[1].Enabled = false;
+        }
+
+        // From http://stackoverflow.com/a/16491073/4332933
+        public IEnumerable<double> logspace(double start, double end, int count)
+        {
+            double d = (double)count, p = end / start;
+            return Enumerable.Range(0, count).Select(i => start * Math.Pow(p, i / d));
         }
     }
 }
