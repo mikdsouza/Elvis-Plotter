@@ -1,4 +1,5 @@
-﻿using NyquistPlotter.Data;
+﻿using Microsoft.VisualBasic;
+using NyquistPlotter.Data;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -189,7 +190,7 @@ namespace NyquistPlotter
             Complex R1 = new Complex(82, 0);
             Complex omegaC = new Complex(2 * Math.PI * 25.2e-9, 0);
             Complex omegaL = new Complex(2 * Math.PI * 11.1e-3, 0);
-            Complex Rs = new Complex(50, 0);
+            Complex Rs = new Complex(52.72, 0);
 
             MakePlots((double i) => R1 / (R1 + (Rs * (Complex.One + Complex.ImaginaryOne * ((omegaL * i) / Rs - Complex.One / (omegaC * i * Rs))))));
         }
