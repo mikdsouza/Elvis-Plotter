@@ -74,7 +74,7 @@
             this.fileToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(781, 24);
+            this.menu.Size = new System.Drawing.Size(604, 24);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -164,8 +164,12 @@
             this.cChart.ChartAreas.Add(chartArea2);
             this.cChart.ContextMenuStrip = this.cmsChart;
             this.cChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
             legend1.Enabled = false;
+            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
             legend1.Name = "Legend1";
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
             legend2.Name = "Legend2";
             this.cChart.Legends.Add(legend1);
             this.cChart.Legends.Add(legend2);
@@ -189,7 +193,6 @@
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Legend = "Legend1";
             series3.LegendText = "Exp. Bode Amplitude";
-            series3.MarkerSize = 7;
             series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
             series3.Name = "sBodeAmp";
             series4.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
@@ -197,14 +200,12 @@
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Legend = "Legend1";
             series4.LegendText = "Theo. Bode Amplitude";
-            series4.MarkerSize = 7;
             series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series4.Name = "sTheoBodeAmp";
             series5.ChartArea = "caBode";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Legend = "Legend1";
             series5.LegendText = "Exp. Bode Phase";
-            series5.MarkerSize = 7;
             series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
             series5.Name = "sBodePhase";
             series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
@@ -213,7 +214,6 @@
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series6.Legend = "Legend1";
             series6.LegendText = "Theo. Bode Phase";
-            series6.MarkerSize = 7;
             series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Cross;
             series6.Name = "sTheoBodePhase";
             series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
@@ -223,7 +223,7 @@
             this.cChart.Series.Add(series4);
             this.cChart.Series.Add(series5);
             this.cChart.Series.Add(series6);
-            this.cChart.Size = new System.Drawing.Size(781, 552);
+            this.cChart.Size = new System.Drawing.Size(604, 557);
             this.cChart.TabIndex = 1;
             this.cChart.Text = "cChart";
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -295,7 +295,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 576);
+            this.ClientSize = new System.Drawing.Size(604, 581);
             this.Controls.Add(this.cChart);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
