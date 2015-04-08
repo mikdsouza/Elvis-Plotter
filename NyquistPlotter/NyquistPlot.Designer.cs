@@ -45,10 +45,16 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addTheoraticalPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.filterAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.filterDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pLowPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.p1ZHighPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.z1PHighPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.z1PLowPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmsChart = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -59,6 +65,10 @@
             this.nyquistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.badeAmplitudeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdChart = new System.Windows.Forms.SaveFileDialog();
+            this.activeFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lowPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bandPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cChart)).BeginInit();
             this.cmsChart.SuspendLayout();
@@ -99,13 +109,22 @@
             // addTheoraticalPlotToolStripMenuItem
             // 
             this.addTheoraticalPlotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3});
+            this.addTheoraticalPlotToolStripMenuItem.Name = "addTheoraticalPlotToolStripMenuItem";
+            this.addTheoraticalPlotToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.addTheoraticalPlotToolStripMenuItem.Text = "Add Theoratical Plot";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterAToolStripMenuItem,
             this.filterBToolStripMenuItem,
             this.filterCToolStripMenuItem,
             this.filterDToolStripMenuItem});
-            this.addTheoraticalPlotToolStripMenuItem.Name = "addTheoraticalPlotToolStripMenuItem";
-            this.addTheoraticalPlotToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.addTheoraticalPlotToolStripMenuItem.Text = "Add Theoratical Plot";
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "361";
             // 
             // filterAToolStripMenuItem
             // 
@@ -134,6 +153,46 @@
             this.filterDToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.filterDToolStripMenuItem.Text = "Filter D";
             this.filterDToolStripMenuItem.Click += new System.EventHandler(this.filterDToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pLowPassToolStripMenuItem,
+            this.p1ZHighPassToolStripMenuItem,
+            this.z1PHighPassToolStripMenuItem,
+            this.z1PLowPassToolStripMenuItem,
+            this.activeFilterToolStripMenuItem});
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Text = "363";
+            // 
+            // pLowPassToolStripMenuItem
+            // 
+            this.pLowPassToolStripMenuItem.Name = "pLowPassToolStripMenuItem";
+            this.pLowPassToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.pLowPassToolStripMenuItem.Text = "1P Low-Pass";
+            this.pLowPassToolStripMenuItem.Click += new System.EventHandler(this.pLowPassToolStripMenuItem_Click);
+            // 
+            // p1ZHighPassToolStripMenuItem
+            // 
+            this.p1ZHighPassToolStripMenuItem.Name = "p1ZHighPassToolStripMenuItem";
+            this.p1ZHighPassToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.p1ZHighPassToolStripMenuItem.Text = "1P1Z High-Pass";
+            this.p1ZHighPassToolStripMenuItem.Click += new System.EventHandler(this.p1ZHighPassToolStripMenuItem_Click);
+            // 
+            // z1PHighPassToolStripMenuItem
+            // 
+            this.z1PHighPassToolStripMenuItem.Name = "z1PHighPassToolStripMenuItem";
+            this.z1PHighPassToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.z1PHighPassToolStripMenuItem.Text = "1Z1P High-Pass";
+            this.z1PHighPassToolStripMenuItem.Click += new System.EventHandler(this.z1PHighPassToolStripMenuItem_Click);
+            // 
+            // z1PLowPassToolStripMenuItem
+            // 
+            this.z1PLowPassToolStripMenuItem.Name = "z1PLowPassToolStripMenuItem";
+            this.z1PLowPassToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.z1PLowPassToolStripMenuItem.Text = "1Z1P Low-Pass";
+            this.z1PLowPassToolStripMenuItem.Click += new System.EventHandler(this.z1PLowPassToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -198,22 +257,28 @@
             series4.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             series4.ChartArea = "caBode";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series4.Legend = "Legend1";
             series4.LegendText = "Theo. Bode Amplitude";
+            series4.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
             series4.Name = "sTheoBodeAmp";
             series5.ChartArea = "caBode";
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             series5.Legend = "Legend1";
             series5.LegendText = "Exp. Bode Phase";
+            series5.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
             series5.Name = "sBodePhase";
             series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
             series6.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             series6.ChartArea = "caBode";
             series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.Blue;
             series6.Legend = "Legend1";
             series6.LegendText = "Theo. Bode Phase";
+            series6.MarkerColor = System.Drawing.Color.Blue;
             series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Cross;
             series6.Name = "sTheoBodePhase";
             series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
@@ -291,6 +356,37 @@
             this.sfdChart.Filter = "PNG Image (*.png)|*.png";
             this.sfdChart.Title = "Save Image";
             // 
+            // activeFilterToolStripMenuItem
+            // 
+            this.activeFilterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lowPassToolStripMenuItem,
+            this.bandPassToolStripMenuItem,
+            this.highPassToolStripMenuItem});
+            this.activeFilterToolStripMenuItem.Name = "activeFilterToolStripMenuItem";
+            this.activeFilterToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.activeFilterToolStripMenuItem.Text = "Active Filters";
+            // 
+            // lowPassToolStripMenuItem
+            // 
+            this.lowPassToolStripMenuItem.Name = "lowPassToolStripMenuItem";
+            this.lowPassToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lowPassToolStripMenuItem.Text = "Low-Pass";
+            this.lowPassToolStripMenuItem.Click += new System.EventHandler(this.lowPassToolStripMenuItem_Click);
+            // 
+            // bandPassToolStripMenuItem
+            // 
+            this.bandPassToolStripMenuItem.Name = "bandPassToolStripMenuItem";
+            this.bandPassToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.bandPassToolStripMenuItem.Text = "Band-Pass";
+            this.bandPassToolStripMenuItem.Click += new System.EventHandler(this.bandPassToolStripMenuItem_Click);
+            // 
+            // highPassToolStripMenuItem
+            // 
+            this.highPassToolStripMenuItem.Name = "highPassToolStripMenuItem";
+            this.highPassToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.highPassToolStripMenuItem.Text = "High-Pass";
+            this.highPassToolStripMenuItem.Click += new System.EventHandler(this.highPassToolStripMenuItem_Click);
+            // 
             // NyquistPlot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,6 +427,16 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem nyquistToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem badeAmplitudeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem pLowPassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem p1ZHighPassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem z1PHighPassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem z1PLowPassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem activeFilterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lowPassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bandPassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem highPassToolStripMenuItem;
 
     }
 }

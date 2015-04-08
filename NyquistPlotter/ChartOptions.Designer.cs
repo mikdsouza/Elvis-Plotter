@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.gbX = new System.Windows.Forms.GroupBox();
-            this.lXMin = new System.Windows.Forms.Label();
-            this.lXMax = new System.Windows.Forms.Label();
-            this.tbXMin = new System.Windows.Forms.TextBox();
-            this.tbXMax = new System.Windows.Forms.TextBox();
             this.chkXAuto = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbXMax = new System.Windows.Forms.TextBox();
+            this.tbXMin = new System.Windows.Forms.TextBox();
+            this.lXMax = new System.Windows.Forms.Label();
+            this.lXMin = new System.Windows.Forms.Label();
+            this.gbY = new System.Windows.Forms.GroupBox();
             this.chkYAuto = new System.Windows.Forms.CheckBox();
             this.tbYMax = new System.Windows.Forms.TextBox();
             this.tbYMin = new System.Windows.Forms.TextBox();
@@ -43,7 +43,7 @@
             this.bOK = new System.Windows.Forms.Button();
             this.bCancel = new System.Windows.Forms.Button();
             this.gbX.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbY.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbX
@@ -60,38 +60,6 @@
             this.gbX.TabStop = false;
             this.gbX.Text = "X-Axis";
             // 
-            // lXMin
-            // 
-            this.lXMin.AutoSize = true;
-            this.lXMin.Location = new System.Drawing.Point(6, 23);
-            this.lXMin.Name = "lXMin";
-            this.lXMin.Size = new System.Drawing.Size(48, 13);
-            this.lXMin.TabIndex = 0;
-            this.lXMin.Text = "Minimum";
-            // 
-            // lXMax
-            // 
-            this.lXMax.AutoSize = true;
-            this.lXMax.Location = new System.Drawing.Point(3, 49);
-            this.lXMax.Name = "lXMax";
-            this.lXMax.Size = new System.Drawing.Size(51, 13);
-            this.lXMax.TabIndex = 1;
-            this.lXMax.Text = "Maximum";
-            // 
-            // tbXMin
-            // 
-            this.tbXMin.Location = new System.Drawing.Point(60, 20);
-            this.tbXMin.Name = "tbXMin";
-            this.tbXMin.Size = new System.Drawing.Size(69, 20);
-            this.tbXMin.TabIndex = 2;
-            // 
-            // tbXMax
-            // 
-            this.tbXMax.Location = new System.Drawing.Point(60, 46);
-            this.tbXMax.Name = "tbXMax";
-            this.tbXMax.Size = new System.Drawing.Size(69, 20);
-            this.tbXMax.TabIndex = 3;
-            // 
             // chkXAuto
             // 
             this.chkXAuto.AutoSize = true;
@@ -103,19 +71,51 @@
             this.chkXAuto.UseVisualStyleBackColor = true;
             this.chkXAuto.CheckedChanged += new System.EventHandler(this.chkXAuto_CheckedChanged);
             // 
-            // groupBox1
+            // tbXMax
             // 
-            this.groupBox1.Controls.Add(this.chkYAuto);
-            this.groupBox1.Controls.Add(this.tbYMax);
-            this.groupBox1.Controls.Add(this.tbYMin);
-            this.groupBox1.Controls.Add(this.lYMax);
-            this.groupBox1.Controls.Add(this.lYMin);
-            this.groupBox1.Location = new System.Drawing.Point(154, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(136, 100);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "X-Axis";
+            this.tbXMax.Location = new System.Drawing.Point(60, 46);
+            this.tbXMax.Name = "tbXMax";
+            this.tbXMax.Size = new System.Drawing.Size(69, 20);
+            this.tbXMax.TabIndex = 3;
+            // 
+            // tbXMin
+            // 
+            this.tbXMin.Location = new System.Drawing.Point(60, 20);
+            this.tbXMin.Name = "tbXMin";
+            this.tbXMin.Size = new System.Drawing.Size(69, 20);
+            this.tbXMin.TabIndex = 2;
+            // 
+            // lXMax
+            // 
+            this.lXMax.AutoSize = true;
+            this.lXMax.Location = new System.Drawing.Point(3, 49);
+            this.lXMax.Name = "lXMax";
+            this.lXMax.Size = new System.Drawing.Size(51, 13);
+            this.lXMax.TabIndex = 1;
+            this.lXMax.Text = "Maximum";
+            // 
+            // lXMin
+            // 
+            this.lXMin.AutoSize = true;
+            this.lXMin.Location = new System.Drawing.Point(6, 23);
+            this.lXMin.Name = "lXMin";
+            this.lXMin.Size = new System.Drawing.Size(48, 13);
+            this.lXMin.TabIndex = 0;
+            this.lXMin.Text = "Minimum";
+            // 
+            // gbY
+            // 
+            this.gbY.Controls.Add(this.chkYAuto);
+            this.gbY.Controls.Add(this.tbYMax);
+            this.gbY.Controls.Add(this.tbYMin);
+            this.gbY.Controls.Add(this.lYMax);
+            this.gbY.Controls.Add(this.lYMin);
+            this.gbY.Location = new System.Drawing.Point(154, 12);
+            this.gbY.Name = "gbY";
+            this.gbY.Size = new System.Drawing.Size(136, 100);
+            this.gbY.TabIndex = 5;
+            this.gbY.TabStop = false;
+            this.gbY.Text = "Y-Axis";
             // 
             // chkYAuto
             // 
@@ -191,7 +191,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.bCancel);
             this.Controls.Add(this.bOK);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbY);
             this.Controls.Add(this.gbX);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ChartOptions";
@@ -199,8 +199,8 @@
             this.Text = "ChartOptions";
             this.gbX.ResumeLayout(false);
             this.gbX.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbY.ResumeLayout(false);
+            this.gbY.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,7 +213,7 @@
         private System.Windows.Forms.Label lXMax;
         private System.Windows.Forms.Label lXMin;
         private System.Windows.Forms.CheckBox chkXAuto;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbY;
         private System.Windows.Forms.CheckBox chkYAuto;
         private System.Windows.Forms.TextBox tbYMax;
         private System.Windows.Forms.TextBox tbYMin;

@@ -222,5 +222,129 @@ namespace NyquistPlotter
             double d = (double)count, p = end / start;
             return Enumerable.Range(0, count).Select(i => start * Math.Pow(p, i / d));
         }
+
+        private void pLowPassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Complex R = new Complex(56e3, 0);
+            Complex omegaC = new Complex(0, 2 * Math.PI * 4.7e-9);
+
+            MakePlots((double i) => 1 / (1 + R * omegaC * i));
+        }
+
+        private void p1ZHighPassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Complex R = new Complex(56e3, 0);
+            Complex omegaC = new Complex(0, 2 * Math.PI * 4.7e-9);
+
+            MakePlots((double i) => 1 / (1 + 1 / (R * omegaC * i)));
+        }
+
+        private void z1PHighPassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            double R1 = 220e3;
+            double R2 = 18e3;
+            Complex omegaC = new Complex(0, 2 * Math.PI * 4.7e-9);
+            Func<double, Complex> Rp = (double i) => (R1 * 1 / (omegaC * i)) / (R1 + 1 / (omegaC * i));
+
+            MakePlots((double i) => 1 / (1 + Rp(i) / R2));
+        }
+
+        private void z1PLowPassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            double R1 = 18e3;
+            double R2 = 220e3;
+            Func<double, Complex> Xc = (double i) => 1 / new Complex(0, 2 * Math.PI * i * 4.7e-9);
+            Func<double, Complex> Rs = (double i) => R1 + Xc(i);
+
+            MakePlots((double i) => 1 / (1 + R2 / Rs(i)));
+        }
+
+        private static DialogResult ShowInputDialog(ref string input, string title)
+        {
+            System.Drawing.Size size = new System.Drawing.Size(200, 70);
+            Form inputBox = new Form();
+
+            inputBox.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            inputBox.ControlBox = false;
+            inputBox.ClientSize = size;
+            inputBox.Text = title;
+
+            System.Windows.Forms.TextBox textBox = new TextBox();
+            textBox.Size = new System.Drawing.Size(size.Width - 10, 23);
+            textBox.Location = new System.Drawing.Point(5, 5);
+            textBox.Text = input;
+            inputBox.Controls.Add(textBox);
+
+            Button okButton = new Button();
+            okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            okButton.Name = "okButton";
+            okButton.Size = new System.Drawing.Size(75, 23);
+            okButton.Text = "&OK";
+            okButton.Location = new System.Drawing.Point(size.Width - 80 - 80, 39);
+            inputBox.Controls.Add(okButton);
+
+            Button cancelButton = new Button();
+            cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new System.Drawing.Size(75, 23);
+            cancelButton.Text = "&Cancel";
+            cancelButton.Location = new System.Drawing.Point(size.Width - 80, 39);
+            inputBox.Controls.Add(cancelButton);
+
+            inputBox.AcceptButton = okButton;
+            inputBox.CancelButton = cancelButton;
+
+            DialogResult result = inputBox.ShowDialog();
+            input = textBox.Text;
+            return result;
+        }
+
+        private void lowPassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string input = "10000";
+
+            if (ShowInputDialog(ref input, "R2 in Ohms") == DialogResult.Cancel)
+                return;
+
+            Func<double, Complex> s = (double i) => new Complex(0, 2 * Math.PI * i);
+            double R = 56e3;
+            double R1 = 47e3;
+            double R2 = double.Parse(input);
+            double C = 4.7e-9;
+
+            MakePlots((double i) => ((1 / (R * R * C * C)) / (s(i) * s(i) + R1 * s(i) / (R2 * R * C) + 1 / (R * R * C * C))));
+        }
+
+        private void bandPassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string input = "10000";
+
+            if (ShowInputDialog(ref input, "R2 in Ohms") == DialogResult.Cancel)
+                return;
+
+            Func<double, Complex> s = (double i) => new Complex(0, 2 * Math.PI * i);
+            double R = 56e3;
+            double R1 = 47e3;
+            double R2 = double.Parse(input);
+            double C = 4.7e-9;
+
+            MakePlots((double i) => ((s(i) / (R * C)) / (s(i) * s(i) + R1 * s(i) / (R2 * R * C) + 1 / (R * R * C * C))));
+        }
+
+        private void highPassToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string input = "10000";
+
+            if (ShowInputDialog(ref input, "R2 in Ohms") == DialogResult.Cancel)
+                return;
+
+            Func<double, Complex> s = (double i) => new Complex(0, 2 * Math.PI * i);
+            double R = 56e3;
+            double R1 = 47e3;
+            double R2 = double.Parse(input);
+            double C = 4.7e-9;
+
+            MakePlots((double i) => ((s(i) * s(i)) / (s(i) * s(i) + R1 * s(i) / (R2 * R * C) + 1 / (R * R * C * C))));
+        }
     }
 }
