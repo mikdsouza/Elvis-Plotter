@@ -14,6 +14,8 @@ namespace NyquistPlotter
 {
     public partial class NyquistPlot : Form
     {
+        private Func<double, Complex> s = (double i) => new Complex(0, 2 * Math.PI * i);
+
         public NyquistPlot()
         {
             InitializeComponent();
@@ -131,7 +133,7 @@ namespace NyquistPlotter
         {
             cChart.Series[1].Points.Clear();
 
-            foreach (double i in logspace(100, 1e6, 100))
+            foreach (double i in logspace(10, 1e6, 100))
             {
                 Complex res = transferFunction(i);
                 cChart.Series[1].Points.AddXY(res.Real, res.Imaginary);
@@ -225,18 +227,19 @@ namespace NyquistPlotter
 
         private void pLowPassToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Complex R = new Complex(56e3, 0);
-            Complex omegaC = new Complex(0, 2 * Math.PI * 4.7e-9);
+            double R = 56e3;
+            double C = 4.7e-9;
+            double oneOverRC = 1 / (R * C);
 
-            MakePlots((double i) => 1 / (1 + R * omegaC * i));
+            MakePlots((double i) => oneOverRC / (s(i) + oneOverRC));
         }
 
         private void p1ZHighPassToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Complex R = new Complex(56e3, 0);
-            Complex omegaC = new Complex(0, 2 * Math.PI * 4.7e-9);
+            double R = 56e3;
+            double C = 4.7e-9;
 
-            MakePlots((double i) => 1 / (1 + 1 / (R * omegaC * i)));
+            MakePlots((double i) => s(i) / (s(i) + 1 / (R * C)));
         }
 
         private void z1PHighPassToolStripMenuItem_Click(object sender, EventArgs e)
@@ -345,6 +348,68 @@ namespace NyquistPlotter
             double C = 4.7e-9;
 
             MakePlots((double i) => ((s(i) * s(i)) / (s(i) * s(i) + R1 * s(i) / (R2 * R * C) + 1 / (R * R * C * C))));
+        }
+
+        private void ClearBodePlots()
+        {
+            for (int i = 2; i <= 5; i++)
+            {
+                cChart.Series[i].Points.Clear();
+            }
+        }
+
+        private void pLPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearBodePlots();
+
+            double pole1 = 600;
+
+            // Magnitude
+            cChart.Series[3].Points.AddXY(100, 0);
+            cChart.Series[3].Points.AddXY(pole1, 0);
+            double freq = pole1;
+            double amp = 0;
+
+            do
+            {
+                freq *= 10;
+                amp -= 20;
+                cChart.Series[3].Points.AddXY(freq, amp);
+            } while (freq <= 1e6);
+
+            // Phase
+
+            cChart.Series[5].Points.AddXY(pole1 / 10, 0);
+            cChart.Series[5].Points.AddXY(pole1, -45);
+            cChart.Series[5].Points.AddXY(pole1 *10, -90);
+            cChart.Series[5].Points.AddXY(1e6, -90);
+        }
+
+        private void p1ZHPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearBodePlots();
+
+            double pole1 = 600;
+
+            // Magnitude
+            cChart.Series[3].Points.AddXY(1e6, 0);
+            cChart.Series[3].Points.AddXY(pole1, 0);
+            double freq = pole1;
+            double amp = 0;
+
+            do
+            {
+                freq /= 10;
+                amp -= 20;
+                cChart.Series[3].Points.AddXY(freq, amp);
+            } while (freq > 100);
+
+            // Phase
+
+            cChart.Series[5].Points.AddXY(pole1 / 10, 90);
+            cChart.Series[5].Points.AddXY(pole1, 45);
+            cChart.Series[5].Points.AddXY(pole1 * 10, 0);
+            cChart.Series[5].Points.AddXY(1e6, 0);
         }
     }
 }
