@@ -246,10 +246,10 @@ namespace NyquistPlotter
         {
             double R1 = 220e3;
             double R2 = 18e3;
-            Complex omegaC = new Complex(0, 2 * Math.PI * 4.7e-9);
-            Func<double, Complex> Rp = (double i) => (R1 * 1 / (omegaC * i)) / (R1 + 1 / (omegaC * i));
+            double Rp = (R1 * R2) / (R1 + R2);
+            double C = 4.7e-9;
 
-            MakePlots((double i) => 1 / (1 + Rp(i) / R2));
+            MakePlots((double i) => (s(i) + 1 / (R1 * C)) / (s(i) + 1 / (Rp * C)));
         }
 
         private void z1PLowPassToolStripMenuItem_Click(object sender, EventArgs e)
@@ -410,6 +410,33 @@ namespace NyquistPlotter
             cChart.Series[5].Points.AddXY(pole1, 45);
             cChart.Series[5].Points.AddXY(pole1 * 10, 0);
             cChart.Series[5].Points.AddXY(1e6, 0);
+        }
+
+        private void z1PHPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearBodePlots();
+
+            double zero1 = 150;
+            double pole1 = 2000;
+
+            // Magnitude
+            cChart.Series[3].Points.AddXY(1e6, 0);
+            cChart.Series[3].Points.AddXY(pole1, 0);
+
+            cChart.Series[3].Points.AddXY(pole1 / 10, -20);
+            cChart.Series[3].Points.AddXY(zero1, -22.5);
+            cChart.Series[3].Points.AddXY(10, -22.5);
+            
+
+            // Phase
+            cChart.Series[5].Points.AddXY(1e6, 0);
+            cChart.Series[5].Points.AddXY(pole1 * 10, 0);
+            cChart.Series[5].Points.AddXY(pole1, 45);
+            cChart.Series[5].Points.AddXY(560, 63);
+            cChart.Series[5].Points.AddXY(150, 41);
+            cChart.Series[5].Points.AddXY(15, 0);
+
+            badeAmplitudeToolStripMenuItem_Click(sender, e);
         }
     }
 }

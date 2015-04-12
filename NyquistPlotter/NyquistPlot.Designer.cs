@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.ofdImportBode = new System.Windows.Forms.OpenFileDialog();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,6 +59,9 @@
             this.lowPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bandPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highPassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.guidelinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pLPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.p1ZHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmsChart = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -69,9 +72,7 @@
             this.nyquistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.badeAmplitudeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdChart = new System.Windows.Forms.SaveFileDialog();
-            this.guidelinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pLPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.p1ZHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.z1PHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cChart)).BeginInit();
             this.cmsChart.SuspendLayout();
@@ -229,6 +230,30 @@
             this.highPassToolStripMenuItem.Text = "High-Pass";
             this.highPassToolStripMenuItem.Click += new System.EventHandler(this.highPassToolStripMenuItem_Click);
             // 
+            // guidelinesToolStripMenuItem
+            // 
+            this.guidelinesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pLPToolStripMenuItem,
+            this.p1ZHPToolStripMenuItem,
+            this.z1PHPToolStripMenuItem});
+            this.guidelinesToolStripMenuItem.Name = "guidelinesToolStripMenuItem";
+            this.guidelinesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.guidelinesToolStripMenuItem.Text = "Guidelines";
+            // 
+            // pLPToolStripMenuItem
+            // 
+            this.pLPToolStripMenuItem.Name = "pLPToolStripMenuItem";
+            this.pLPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pLPToolStripMenuItem.Text = "1PLP";
+            this.pLPToolStripMenuItem.Click += new System.EventHandler(this.pLPToolStripMenuItem_Click);
+            // 
+            // p1ZHPToolStripMenuItem
+            // 
+            this.p1ZHPToolStripMenuItem.Name = "p1ZHPToolStripMenuItem";
+            this.p1ZHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.p1ZHPToolStripMenuItem.Text = "1P1ZHP";
+            this.p1ZHPToolStripMenuItem.Click += new System.EventHandler(this.p1ZHPToolStripMenuItem_Click);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -238,98 +263,98 @@
             // 
             // cChart
             // 
-            chartArea3.AxisX.Title = "Real(Gain)";
-            chartArea3.AxisY.Title = "Im(Gain)";
-            chartArea3.Name = "caNyquist";
-            chartArea4.AxisX.IsLogarithmic = true;
-            chartArea4.AxisX.Maximum = 1000000D;
-            chartArea4.AxisX.Minimum = 100D;
-            chartArea4.AxisX.Title = "Frequency (Hz)";
-            chartArea4.AxisX2.IsLogarithmic = true;
-            chartArea4.AxisX2.Maximum = 1000000D;
-            chartArea4.AxisX2.Minimum = 100D;
-            chartArea4.AxisY.Title = "Gain (dB)";
-            chartArea4.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Silver;
-            chartArea4.AxisY2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            chartArea4.AxisY2.Title = "Phase (deg)";
-            chartArea4.Name = "caBode";
-            chartArea4.Visible = false;
-            this.cChart.ChartAreas.Add(chartArea3);
-            this.cChart.ChartAreas.Add(chartArea4);
+            chartArea1.AxisX.Title = "Real(Gain)";
+            chartArea1.AxisY.Title = "Im(Gain)";
+            chartArea1.Name = "caNyquist";
+            chartArea2.AxisX.IsLogarithmic = true;
+            chartArea2.AxisX.Maximum = 1000000D;
+            chartArea2.AxisX.Minimum = 100D;
+            chartArea2.AxisX.Title = "Frequency (Hz)";
+            chartArea2.AxisX2.IsLogarithmic = true;
+            chartArea2.AxisX2.Maximum = 1000000D;
+            chartArea2.AxisX2.Minimum = 100D;
+            chartArea2.AxisY.Title = "Gain (dB)";
+            chartArea2.AxisY2.MajorGrid.LineColor = System.Drawing.Color.Silver;
+            chartArea2.AxisY2.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea2.AxisY2.Title = "Phase (deg)";
+            chartArea2.Name = "caBode";
+            chartArea2.Visible = false;
+            this.cChart.ChartAreas.Add(chartArea1);
+            this.cChart.ChartAreas.Add(chartArea2);
             this.cChart.ContextMenuStrip = this.cmsChart;
             this.cChart.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend3.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend3.Enabled = false;
-            legend3.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
-            legend3.Name = "Legend1";
-            legend4.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend4.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
-            legend4.Name = "Legend2";
-            this.cChart.Legends.Add(legend3);
-            this.cChart.Legends.Add(legend4);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Enabled = false;
+            legend1.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend1.Name = "Legend1";
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.LegendStyle = System.Windows.Forms.DataVisualization.Charting.LegendStyle.Row;
+            legend2.Name = "Legend2";
+            this.cChart.Legends.Add(legend1);
+            this.cChart.Legends.Add(legend2);
             this.cChart.Location = new System.Drawing.Point(0, 24);
             this.cChart.Name = "cChart";
-            series7.ChartArea = "caNyquist";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series7.Legend = "Legend2";
-            series7.LegendText = "Exp. Nyquist Plot";
-            series7.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            series7.Name = "sPlot";
-            series8.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            series8.BorderWidth = 3;
-            series8.ChartArea = "caNyquist";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series8.Legend = "Legend2";
-            series8.LegendText = "Theo. Nyquist Plot";
-            series8.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series8.Name = "sTheoPlot";
-            series9.ChartArea = "caBode";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.Legend = "Legend1";
-            series9.LegendText = "Exp. Bode Amplitude";
-            series9.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
-            series9.Name = "sBodeAmp";
-            series10.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            series10.ChartArea = "caBode";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series10.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series10.Legend = "Legend1";
-            series10.LegendText = "Theo. Bode Amplitude";
-            series10.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            series10.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
-            series10.Name = "sTheoBodeAmp";
-            series11.ChartArea = "caBode";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series11.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            series11.Legend = "Legend1";
-            series11.LegendText = "Exp. Bode Phase";
-            series11.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            series11.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
-            series11.Name = "sBodePhase";
-            series11.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            series12.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
-            series12.ChartArea = "caBode";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series12.Color = System.Drawing.Color.Blue;
-            series12.Legend = "Legend1";
-            series12.LegendText = "Theo. Bode Phase";
-            series12.MarkerColor = System.Drawing.Color.Blue;
-            series12.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Cross;
-            series12.Name = "sTheoBodePhase";
-            series12.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
-            this.cChart.Series.Add(series7);
-            this.cChart.Series.Add(series8);
-            this.cChart.Series.Add(series9);
-            this.cChart.Series.Add(series10);
-            this.cChart.Series.Add(series11);
-            this.cChart.Series.Add(series12);
+            series1.ChartArea = "caNyquist";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend2";
+            series1.LegendText = "Exp. Nyquist Plot";
+            series1.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series1.Name = "sPlot";
+            series2.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            series2.BorderWidth = 3;
+            series2.ChartArea = "caNyquist";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend2";
+            series2.LegendText = "Theo. Nyquist Plot";
+            series2.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series2.Name = "sTheoPlot";
+            series3.ChartArea = "caBode";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.LegendText = "Exp. Bode Amplitude";
+            series3.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Square;
+            series3.Name = "sBodeAmp";
+            series4.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            series4.ChartArea = "caBode";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series4.Legend = "Legend1";
+            series4.LegendText = "Theo. Bode Amplitude";
+            series4.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            series4.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Circle;
+            series4.Name = "sTheoBodeAmp";
+            series5.ChartArea = "caBode";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series5.Legend = "Legend1";
+            series5.LegendText = "Exp. Bode Phase";
+            series5.MarkerColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            series5.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Diamond;
+            series5.Name = "sBodePhase";
+            series5.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            series6.BorderDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            series6.ChartArea = "caBode";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.Blue;
+            series6.Legend = "Legend1";
+            series6.LegendText = "Theo. Bode Phase";
+            series6.MarkerColor = System.Drawing.Color.Blue;
+            series6.MarkerStyle = System.Windows.Forms.DataVisualization.Charting.MarkerStyle.Cross;
+            series6.Name = "sTheoBodePhase";
+            series6.YAxisType = System.Windows.Forms.DataVisualization.Charting.AxisType.Secondary;
+            this.cChart.Series.Add(series1);
+            this.cChart.Series.Add(series2);
+            this.cChart.Series.Add(series3);
+            this.cChart.Series.Add(series4);
+            this.cChart.Series.Add(series5);
+            this.cChart.Series.Add(series6);
             this.cChart.Size = new System.Drawing.Size(604, 557);
             this.cChart.TabIndex = 1;
             this.cChart.Text = "cChart";
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.Name = "title";
-            title2.Text = "Nyquist Plot";
-            this.cChart.Titles.Add(title2);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "title";
+            title1.Text = "Nyquist Plot";
+            this.cChart.Titles.Add(title1);
             // 
             // cmsChart
             // 
@@ -391,28 +416,12 @@
             this.sfdChart.Filter = "PNG Image (*.png)|*.png";
             this.sfdChart.Title = "Save Image";
             // 
-            // guidelinesToolStripMenuItem
+            // z1PHPToolStripMenuItem
             // 
-            this.guidelinesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pLPToolStripMenuItem,
-            this.p1ZHPToolStripMenuItem});
-            this.guidelinesToolStripMenuItem.Name = "guidelinesToolStripMenuItem";
-            this.guidelinesToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.guidelinesToolStripMenuItem.Text = "Guidelines";
-            // 
-            // pLPToolStripMenuItem
-            // 
-            this.pLPToolStripMenuItem.Name = "pLPToolStripMenuItem";
-            this.pLPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.pLPToolStripMenuItem.Text = "1PLP";
-            this.pLPToolStripMenuItem.Click += new System.EventHandler(this.pLPToolStripMenuItem_Click);
-            // 
-            // p1ZHPToolStripMenuItem
-            // 
-            this.p1ZHPToolStripMenuItem.Name = "p1ZHPToolStripMenuItem";
-            this.p1ZHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.p1ZHPToolStripMenuItem.Text = "1P1ZHP";
-            this.p1ZHPToolStripMenuItem.Click += new System.EventHandler(this.p1ZHPToolStripMenuItem_Click);
+            this.z1PHPToolStripMenuItem.Name = "z1PHPToolStripMenuItem";
+            this.z1PHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.z1PHPToolStripMenuItem.Text = "1Z1PHP";
+            this.z1PHPToolStripMenuItem.Click += new System.EventHandler(this.z1PHPToolStripMenuItem_Click);
             // 
             // NyquistPlot
             // 
@@ -467,6 +476,7 @@
         private System.Windows.Forms.ToolStripMenuItem guidelinesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pLPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem p1ZHPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem z1PHPToolStripMenuItem;
 
     }
 }
