@@ -9,7 +9,23 @@ namespace NyquistPlotter.Data
 
         public double GainDB { get; set; }
 
-        public double PhaseDeg { get; set; }
+        public double phaseDeg;
+        public double PhaseDeg {
+            get { return phaseDeg; }
+            set
+            {
+                //put the angle between -180 and 180
+                while(!(-180 <= value && value <= 180))
+                {
+                    if (value < -180)
+                        value += 360;
+                    else if (value > 180)
+                        value -= 360;
+                }
+
+                phaseDeg = value;
+            }
+        }
 
         public double GainAbs
         {

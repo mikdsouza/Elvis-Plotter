@@ -62,6 +62,7 @@
             this.guidelinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pLPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.p1ZHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.z1PHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.cmsChart = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -72,7 +73,9 @@
             this.nyquistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.badeAmplitudeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdChart = new System.Windows.Forms.SaveFileDialog();
-            this.z1PHPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importWOffset180ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importWOffset90ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importWOffset180ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cChart)).BeginInit();
             this.cmsChart.SuspendLayout();
@@ -96,6 +99,9 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importToolStripMenuItem,
+            this.importWOffset180ToolStripMenuItem,
+            this.importWOffset180ToolStripMenuItem1,
+            this.importWOffset90ToolStripMenuItem,
             this.addTheoraticalPlotToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -106,7 +112,7 @@
             // 
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.importToolStripMenuItem.Text = "Import";
             this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
@@ -116,7 +122,7 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem3});
             this.addTheoraticalPlotToolStripMenuItem.Name = "addTheoraticalPlotToolStripMenuItem";
-            this.addTheoraticalPlotToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.addTheoraticalPlotToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.addTheoraticalPlotToolStripMenuItem.Text = "Add Theoratical Plot";
             // 
             // toolStripMenuItem2
@@ -127,7 +133,7 @@
             this.filterCToolStripMenuItem,
             this.filterDToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(92, 22);
             this.toolStripMenuItem2.Text = "361";
             // 
             // filterAToolStripMenuItem
@@ -168,7 +174,7 @@
             this.activeFilterToolStripMenuItem,
             this.guidelinesToolStripMenuItem});
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(92, 22);
             this.toolStripMenuItem3.Text = "363";
             // 
             // pLowPassToolStripMenuItem
@@ -243,21 +249,28 @@
             // pLPToolStripMenuItem
             // 
             this.pLPToolStripMenuItem.Name = "pLPToolStripMenuItem";
-            this.pLPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pLPToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.pLPToolStripMenuItem.Text = "1PLP";
             this.pLPToolStripMenuItem.Click += new System.EventHandler(this.pLPToolStripMenuItem_Click);
             // 
             // p1ZHPToolStripMenuItem
             // 
             this.p1ZHPToolStripMenuItem.Name = "p1ZHPToolStripMenuItem";
-            this.p1ZHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.p1ZHPToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.p1ZHPToolStripMenuItem.Text = "1P1ZHP";
             this.p1ZHPToolStripMenuItem.Click += new System.EventHandler(this.p1ZHPToolStripMenuItem_Click);
+            // 
+            // z1PHPToolStripMenuItem
+            // 
+            this.z1PHPToolStripMenuItem.Name = "z1PHPToolStripMenuItem";
+            this.z1PHPToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.z1PHPToolStripMenuItem.Text = "1Z1PHP";
+            this.z1PHPToolStripMenuItem.Click += new System.EventHandler(this.z1PHPToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -416,12 +429,26 @@
             this.sfdChart.Filter = "PNG Image (*.png)|*.png";
             this.sfdChart.Title = "Save Image";
             // 
-            // z1PHPToolStripMenuItem
+            // importWOffset180ToolStripMenuItem
             // 
-            this.z1PHPToolStripMenuItem.Name = "z1PHPToolStripMenuItem";
-            this.z1PHPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.z1PHPToolStripMenuItem.Text = "1Z1PHP";
-            this.z1PHPToolStripMenuItem.Click += new System.EventHandler(this.z1PHPToolStripMenuItem_Click);
+            this.importWOffset180ToolStripMenuItem.Name = "importWOffset180ToolStripMenuItem";
+            this.importWOffset180ToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.importWOffset180ToolStripMenuItem.Text = "Import w/Offset -180";
+            this.importWOffset180ToolStripMenuItem.Click += new System.EventHandler(this.importWOffset180ToolStripMenuItem_Click);
+            // 
+            // importWOffset90ToolStripMenuItem
+            // 
+            this.importWOffset90ToolStripMenuItem.Name = "importWOffset90ToolStripMenuItem";
+            this.importWOffset90ToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.importWOffset90ToolStripMenuItem.Text = "Import w/Offset -90";
+            this.importWOffset90ToolStripMenuItem.Click += new System.EventHandler(this.importWOffset90ToolStripMenuItem_Click);
+            // 
+            // importWOffset180ToolStripMenuItem1
+            // 
+            this.importWOffset180ToolStripMenuItem1.Name = "importWOffset180ToolStripMenuItem1";
+            this.importWOffset180ToolStripMenuItem1.Size = new System.Drawing.Size(188, 22);
+            this.importWOffset180ToolStripMenuItem1.Text = "Import w/Offset +180";
+            this.importWOffset180ToolStripMenuItem1.Click += new System.EventHandler(this.importWOffset180ToolStripMenuItem1_Click);
             // 
             // NyquistPlot
             // 
@@ -477,6 +504,9 @@
         private System.Windows.Forms.ToolStripMenuItem pLPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem p1ZHPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem z1PHPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importWOffset180ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importWOffset90ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importWOffset180ToolStripMenuItem1;
 
     }
 }

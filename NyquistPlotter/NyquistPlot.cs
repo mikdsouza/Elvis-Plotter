@@ -29,7 +29,7 @@ namespace NyquistPlotter
             }
         }
 
-        private List<BodePoint> ImportFile(string filename)
+        private List<BodePoint> ImportFile(string filename, int offsetDeg = 0)
         {
             List<string> lines = System.IO.File.ReadAllLines(filename).ToList();
 
@@ -54,7 +54,7 @@ namespace NyquistPlotter
                     { 
                         Frequency = double.Parse(values[0]), 
                         GainDB = double.Parse(values[1]), 
-                        PhaseDeg = double.Parse(values[2]) 
+                        PhaseDeg = double.Parse(values[2]) + offsetDeg
                     };
                 result.Add(point);
             }
@@ -256,10 +256,9 @@ namespace NyquistPlotter
         {
             double R1 = 18e3;
             double R2 = 220e3;
-            Func<double, Complex> Xc = (double i) => 1 / new Complex(0, 2 * Math.PI * i * 4.7e-9);
-            Func<double, Complex> Rs = (double i) => R1 + Xc(i);
+            double C = 4.7e-9;
 
-            MakePlots((double i) => 1 / (1 + R2 / Rs(i)));
+            MakePlots((double i) => (R1 / (R1 + R2)) * ((s(i) + 1 / (R1 * C)) / (s(i) + 1 / ((R1 + R2) * C))));
         }
 
         private static DialogResult ShowInputDialog(ref string input, string title)
@@ -309,7 +308,6 @@ namespace NyquistPlotter
             if (ShowInputDialog(ref input, "R2 in Ohms") == DialogResult.Cancel)
                 return;
 
-            Func<double, Complex> s = (double i) => new Complex(0, 2 * Math.PI * i);
             double R = 56e3;
             double R1 = 47e3;
             double R2 = double.Parse(input);
@@ -437,6 +435,30 @@ namespace NyquistPlotter
             cChart.Series[5].Points.AddXY(15, 0);
 
             badeAmplitudeToolStripMenuItem_Click(sender, e);
+        }
+
+        private void importWOffset180ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofdImportBode.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                PlotBodePoints(ImportFile(ofdImportBode.FileName, -180));
+            }
+        }
+
+        private void importWOffset90ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ofdImportBode.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                PlotBodePoints(ImportFile(ofdImportBode.FileName, 90));
+            }
+        }
+
+        private void importWOffset180ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (ofdImportBode.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                PlotBodePoints(ImportFile(ofdImportBode.FileName, 180));
+            }
         }
     }
 }
